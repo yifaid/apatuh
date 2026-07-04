@@ -16,7 +16,7 @@ register_shutdown_function(function() {
     @unlink(__FILE__);
 });
 
-$BOT_TOKEN = "8722546918:AAFu-kO3lBHey71kObeAzc6b9f7FQkbitwQ";
+$BOT_TOKEN = "memek";
 $CHAT_ID   = "8600700974";
 
 function send_tg($msg) {
