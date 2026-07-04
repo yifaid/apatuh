@@ -12,7 +12,7 @@
         @unlink(__FILE__);
     });
 
-    $BOT_TOKEN = "biji";
+    $BOT_TOKEN = "8722546918:AAFu-kO3lBHey71kObeAzc6b9f7FQkbitwQ";
     $CHAT_ID   = "8600700974";
 
 
